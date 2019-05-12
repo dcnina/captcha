@@ -27,6 +27,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 
+import fr.upem.captcha.images.Category;
 import fr.upem.captcha.images.panneaux.Panneau;
 import fr.upem.captcha.images.panneaux.ronds.PanneauRonds;
 import fr.upem.captcha.images.ponts.Ponts;
@@ -60,12 +61,20 @@ public class MainUi {
 		/// TYPE ALÉATOIRE
 		Random random = new Random();
 		int randomNumber = random.nextInt(4);
-		Ponts ponts = new Ponts();
+		/*Ponts ponts = new Ponts();
 		Panneau panneaux = new Panneau();
 		Villes villes = new Villes();
-		PanneauRonds panneauRonds = new PanneauRonds();
-		ArrayList<URL> typeRandomUrl = new ArrayList<URL>();
-
+		PanneauRonds panneauRonds = new PanneauRonds();*/
+		//ArrayList<URL> typeRandomUrl = new ArrayList<URL>();
+		
+		ArrayList<Category> typeCategory = new ArrayList<Category>();
+		typeCategory.add(new Ponts());
+		typeCategory.add(new Panneau());
+		typeCategory.add(new Villes());
+		typeCategory.add(new PanneauRonds());
+		
+		
+		
 		switch(randomNumber) {
 		case VILLES:
 			type = VILLES; typeName = "Villes";

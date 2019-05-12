@@ -10,11 +10,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import fr.upem.captcha.images.Category;
 import fr.upem.captcha.images.Images;
 import fr.upem.captcha.images.panneaux.ronds.PanneauRonds;
 
-public class Panneau implements Images {
+public class Panneau extends Category {
 	private final File directory = new File("./src/fr/upem/captcha/images/panneaux");
+	
+	public Panneau() {
+		super();
+	}
 
 	@Override
 	public List<URL> getPhotos() {

@@ -9,11 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import fr.upem.captcha.images.Category;
 import fr.upem.captcha.images.Images;
 import fr.upem.captcha.images.panneaux.ronds.PanneauRonds;
 
-public class Villes implements Images {
+public class Villes extends Category {
 	private final File directory = new File("./src/fr/upem/captcha/images/villes");
+	
+	public Villes() {
+		super();
+	}
 	
 	@Override
 	public List<URL> getPhotos() {
@@ -36,26 +41,7 @@ public class Villes implements Images {
             return null;
 	}
 
-	@Override
-	public List<URL> getRandomPhotosURL(int max) {
-		
-		List<URL> randomUrlList = new ArrayList<URL>();
-		for(int i = 0; i < max; i++) {
-			randomUrlList.add(getRandomPhotoURL());
-		}
-		
-		return randomUrlList;
-	}
-
-	@Override
-	public URL getRandomPhotoURL() {
-		List<URL> urlList = getPhotos();
-		Random random = new Random();
-		int randomNumber = random.nextInt(urlList.size());
-		URL url = urlList.get(randomNumber);
-		return url;
-	}
-
+	
 	@Override
 	public boolean isPhotoCorrect(URL url) {
 		String filename = Paths.get(url.getPath()).getFileName().toString();
