@@ -14,6 +14,7 @@ import fr.upem.captcha.images.villes.Villes;
 public class Init {
 	Random random = new Random();
 	Images correctCategory;
+	String stringCategory;
 	ArrayList<URL> correctImages = new ArrayList<URL>();
 	ArrayList<URL> allImages = new ArrayList<URL>();
 	ArrayList<String> categorieNames = new ArrayList<String>();
@@ -32,6 +33,10 @@ public class Init {
 
 	public Images getCorrectCategory() {
 		return correctCategory;
+	}
+	
+	public String getCorrectStringCategory() {
+		return stringCategory;
 	}
 	
 	public void addCategories() {
@@ -54,6 +59,7 @@ public class Init {
 		//categories.add((Images) Class.forName("PanneauRonds").newInstance());
 		
 		//RANDOM CATEGORY
+		this.stringCategory = categorieNames.get(randomNumber);
 		this.correctCategory = categories.get(randomNumber);
 		
 		//FILL CORRECT IMAGES

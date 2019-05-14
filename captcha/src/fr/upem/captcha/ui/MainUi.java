@@ -42,7 +42,6 @@ public class MainUi {
 	private static ArrayList<URL> selectedImages = new ArrayList<URL>();
 	private static int type;
 	private static int numberImages = 0;
-	private static String typeName;
 	private static Init init = new Init();
 
 	public static void main(String[] args) throws IOException, URISyntaxException, InstantiationException, IllegalAccessException, ClassNotFoundException {
@@ -116,7 +115,7 @@ public class MainUi {
 			frame.add(createLabelImage(init.getAllImages().get(j)));
 		
 
-		frame.add(new JLabel("Trouvez toutes les images qui sont des : \n" + typeName));
+		frame.add(new JLabel("Trouvez: \n" + init.getCorrectStringCategory()));
 		frame.add(okButton);
 		frame.setVisible(true);
 	}
