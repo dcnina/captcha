@@ -28,6 +28,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 
 import fr.upem.captcha.images.Category;
+import fr.upem.captcha.images.Images;
 import fr.upem.captcha.images.panneaux.Panneau;
 import fr.upem.captcha.images.panneaux.ronds.PanneauRonds;
 import fr.upem.captcha.images.ponts.Ponts;
@@ -42,8 +43,9 @@ public class MainUi {
 	private static int type;
 	private static int numberImages = 0;
 	private static String typeName;
+	private static Init init = new Init();
 
-	public static void main(String[] args) throws IOException, URISyntaxException, InstantiationException, IllegalAccessException {
+	public static void main(String[] args) throws IOException, URISyntaxException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		JFrame frame = new JFrame("Captcha"); // Création de la fenêtre principale
 
 		GridLayout layout = createLayout();  // Création d'un layout de type Grille avec 4 lignes et 3 colonnes
@@ -59,23 +61,8 @@ public class MainUi {
 
 
 		/// TYPE ALÉATOIRE
-		Random random = new Random();
-		int randomNumber = random.nextInt(4);
-		/*Ponts ponts = new Ponts();
-		Panneau panneaux = new Panneau();
-		Villes villes = new Villes();
-		PanneauRonds panneauRonds = new PanneauRonds();*/
-		//ArrayList<URL> typeRandomUrl = new ArrayList<URL>();
 		
-		ArrayList<Category> typeCategory = new ArrayList<Category>();
-		typeCategory.add(new Ponts());
-		typeCategory.add(new Panneau());
-		typeCategory.add(new Villes());
-		typeCategory.add(new PanneauRonds());
-		
-		
-		
-		switch(randomNumber) {
+		/*switch(randomNumber) {
 		case VILLES:
 			type = VILLES; typeName = "Villes";
 			typeRandomUrl = (ArrayList<URL>)villes.getRandomPhotosURL(random.nextInt(4) + 1); break;
@@ -115,10 +102,19 @@ public class MainUi {
 		}
 
 		Collections.shuffle(typeRandomUrl);	//mélange de la liste
+		*/
 		// Ajout des images dans la frame
+		
+		init.initGrid();
+		
+		System.out.println("Catégories: " + init.getCategorieNames().toString());
+		System.out.println("Bonne CAT: " + init.getCorrectCategory().toString());
+		System.out.println("Tableaux d'images: " + init.getCorrectImages().toString());
+		System.out.println();
+		
 		for(int j = 0; j < 9; j++)
-			frame.add(createLabelImage(typeRandomUrl.get(j)));
-
+			frame.add(createLabelImage(init.getAllImages().get(j)));
+		
 
 		frame.add(new JLabel("Trouvez toutes les images qui sont des : \n" + typeName));
 		frame.add(okButton);
@@ -139,7 +135,12 @@ public class MainUi {
 
 					@Override
 					public void run() { // c'est un runnable
-						System.out.println("J'ai cliqué sur Ok");
+						if (checkPhotosIsCorrect(init.getCorrectImages(), init.getCorrectCategory())) {
+							System.out.println("C'est OK");
+						}
+						else {
+							System.out.println("PAS OK");
+						}
 					}
 				});
 			}
@@ -202,5 +203,18 @@ public class MainUi {
 		});
 
 		return label;
+	}
+	
+	private static boolean checkPhotosIsCorrect(ArrayList<URL> correctImages, Images category) {
+		if (selectedImages.containsAll(correctImages)) {
+			for (URL url: selectedImages) {
+				if (!category.isPhotoCorrect(url))
+					return false;
+			}
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 }

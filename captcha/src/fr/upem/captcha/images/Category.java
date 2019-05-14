@@ -8,13 +8,13 @@ import java.util.List;
 import java.util.Random;
 
 public abstract class Category implements Images{
-	private ArrayList<URL> images;
+	private List<URL> images;
 	
 	public Category() {
 		this.images = new ArrayList<URL>();
 	}
 	
-	public ArrayList<URL> getImages() {
+	public List<URL> getImages() {
 		return this.images;
 	}
 	
@@ -24,8 +24,13 @@ public abstract class Category implements Images{
 	public List<URL> getRandomPhotosURL(int max) {
 		
 		List<URL> randomUrlList = new ArrayList<URL>();
+		URL url;
+		
 		for(int i = 0; i < max; i++) {
-			randomUrlList.add(getRandomPhotoURL());
+			do {
+				url = getRandomPhotoURL();
+			} while (randomUrlList.contains(url));
+			randomUrlList.add(url);
 		}
 		
 		return randomUrlList;
