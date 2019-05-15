@@ -40,12 +40,15 @@ public class MainUi {
 	final static int PANNEAUX = 2;
 	final static int PANNEAUXRONDS = 3;
 	private static ArrayList<URL> selectedImages = new ArrayList<URL>();
-	private static int type;
-	private static int numberImages = 0;
+	private static ArrayList<URL> correctedImages = new ArrayList<URL>();
 	private static Init init = new Init();
 
 	public static void main(String[] args) throws IOException, URISyntaxException, InstantiationException, IllegalAccessException, ClassNotFoundException {
-		JFrame frame = new JFrame("Captcha"); // Création de la fenêtre principale
+		JFrame frame = new JFrame("Captcha");
+		initCaptcha(frame);
+	}
+	
+	public static void initCaptcha(JFrame frame) throws InstantiationException, IllegalAccessException, ClassNotFoundException, IOException {
 
 		GridLayout layout = createLayout();  // Création d'un layout de type Grille avec 4 lignes et 3 colonnes
 
@@ -56,54 +59,9 @@ public class MainUi {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Lorsque l'on ferme la fenêtre on quitte le programme.
 
 
-		JButton okButton = createOkButton();
+		JButton okButton = createOkButton(frame);
 
-
-		/// TYPE ALÉATOIRE
-		
-		/*switch(randomNumber) {
-		case VILLES:
-			type = VILLES; typeName = "Villes";
-			typeRandomUrl = (ArrayList<URL>)villes.getRandomPhotosURL(random.nextInt(4) + 1); break;
-		case PONTS:
-			type = PONTS; typeName = "Ponts";
-			typeRandomUrl = (ArrayList<URL>)ponts.getRandomPhotosURL(random.nextInt(4) + 1); break;
-		case PANNEAUX:
-			type = PANNEAUX; typeName = "Panneaux";
-			typeRandomUrl = (ArrayList<URL>)panneaux.getRandomPhotosURL(random.nextInt(4) + 1); break;
-		case PANNEAUXRONDS:
-			type = PANNEAUXRONDS; typeName = "Panneaux ronds";
-			typeRandomUrl = (ArrayList<URL>)panneauRonds.getRandomPhotosURL(random.nextInt(4) + 1); break;
-		}
-
-		numberImages += typeRandomUrl.size();
-		System.out.println("NOUS AVONS UN TYPE : " + type + " et une taille : " + numberImages);
-		
-		//REMPLISSAGE DE TYPERANDOMURL
-		ArrayList<URL> tmpRandomUrl = new ArrayList<URL>();
-		for(int i = numberImages; i < 9; i++) {
-			do{
-				randomNumber = random.nextInt(4);
-			}while(randomNumber == type); 
-			
-			switch(randomNumber){
-			case VILLES: 
-				tmpRandomUrl = (ArrayList<URL>)villes.getRandomPhotosURL(1); break;
-			case PONTS:
-				tmpRandomUrl = (ArrayList<URL>)ponts.getRandomPhotosURL(1); break;
-			case PANNEAUX:
-				tmpRandomUrl = (ArrayList<URL>)panneaux.getRandomPhotosURL(1); break;
-			case PANNEAUXRONDS:
-				tmpRandomUrl = (ArrayList<URL>)panneauRonds.getRandomPhotosURL(1); break;
-			}
-			numberImages += tmpRandomUrl.size();
-			typeRandomUrl.addAll(tmpRandomUrl);
-		}
-
-		Collections.shuffle(typeRandomUrl);	//mélange de la liste
-		*/
 		// Ajout des images dans la frame
-		
 		init.initGrid();
 		
 		System.out.println("Catégories: " + init.getCategorieNames().toString());
@@ -120,12 +78,11 @@ public class MainUi {
 		frame.setVisible(true);
 	}
 
-
 	private static GridLayout createLayout(){
 		return new GridLayout(4,3);
 	}
 
-	private static JButton createOkButton(){
+	private static JButton createOkButton(final JFrame frame){
 		return new JButton(new AbstractAction("Vérifier") { //ajouter l'action du bouton
 
 			@Override
@@ -138,6 +95,14 @@ public class MainUi {
 							System.out.println("C'est OK");
 						}
 						else {
+							
+								try {
+									restartCaptcha(frame);
+								} catch (InstantiationException | IllegalAccessException | ClassNotFoundException
+										| IOException e) {
+									e.printStackTrace();
+								}
+							
 							System.out.println("PAS OK");
 						}
 					}
@@ -215,5 +180,13 @@ public class MainUi {
 		else{
 			return false;
 		}
+	}
+	
+	public static void restartCaptcha(JFrame frame) throws InstantiationException, IllegalAccessException, ClassNotFoundException, IOException {
+		selectedImages.clear();
+		frame.setVisible(false);
+		init.cleanInit();
+		frame = new JFrame("Captcha");
+		initCaptcha(frame);
 	}
 }
