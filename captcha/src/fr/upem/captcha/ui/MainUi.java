@@ -26,6 +26,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
+import javax.swing.JOptionPane;
 
 import fr.upem.captcha.images.Category;
 import fr.upem.captcha.images.Images;
@@ -83,7 +84,7 @@ public class MainUi {
 	}
 
 	private static JButton createOkButton(final JFrame frame){
-		return new JButton(new AbstractAction("VÃ©rifier") { //ajouter l'action du bouton
+		return new JButton(new AbstractAction("Vérifier") { //ajouter l'action du bouton
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -93,6 +94,7 @@ public class MainUi {
 					public void run() { // c'est un runnable
 						if (checkPhotosIsCorrect(init.getCorrectImages(), init.getCorrectCategory())) {
 							System.out.println("C'est OK");
+							displaySuccessMessage("Félicitations vous avez réussi !", frame);
 						}
 						else {
 							
@@ -104,6 +106,7 @@ public class MainUi {
 								}
 							
 							System.out.println("PAS OK");
+							displayErrorMessage("Vous avez fait erreur !");
 						}
 					}
 				});
@@ -180,6 +183,15 @@ public class MainUi {
 		else{
 			return false;
 		}
+	}
+	
+	public static void displayErrorMessage(String message) {
+		JOptionPane.showMessageDialog(null, message);
+	}
+	
+	public static void displaySuccessMessage(String message, final JFrame frame) {
+		JOptionPane.showMessageDialog(null, message);
+		frame.dispose();
 	}
 	
 	public static void restartCaptcha(JFrame frame) throws InstantiationException, IllegalAccessException, ClassNotFoundException, IOException {
