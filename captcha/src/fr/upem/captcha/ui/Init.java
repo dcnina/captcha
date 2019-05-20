@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Random;
 
 import fr.upem.captcha.images.Images;
+import fr.upem.captcha.images.bancs.Bancs;
 import fr.upem.captcha.images.panneaux.Panneau;
 import fr.upem.captcha.images.panneaux.ronds.PanneauRonds;
 import fr.upem.captcha.images.ponts.Ponts;
@@ -18,6 +19,7 @@ public class Init {
 	ArrayList<URL> correctImages = new ArrayList<URL>();
 	ArrayList<URL> allImages = new ArrayList<URL>();
 	ArrayList<String> categorieNames = new ArrayList<String>();
+	int maxDifficulty = 1;
 	
 	public ArrayList<URL> getCorrectImages() {
 		return correctImages;
@@ -42,8 +44,9 @@ public class Init {
 	public void addCategories() {
 		categorieNames.add("Ponts");
 		categorieNames.add("Villes");
-		categorieNames.add("PanneauRonds");
 		categorieNames.add("Panneau");
+		categorieNames.add("PanneauRonds");
+		categorieNames.add("Bancs");
 	}
 	
 	public void initGrid() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
@@ -54,8 +57,9 @@ public class Init {
 		//INIT ARRAY CATEGORIES
 		categories.add(new Ponts());
 		categories.add(new Villes());
-		categories.add(new PanneauRonds());
 		categories.add(new Panneau());
+		categories.add(new PanneauRonds());
+		categories.add(new Bancs());
 		//categories.add((Images) Class.forName("PanneauRonds").newInstance());
 		
 		//RANDOM CATEGORY

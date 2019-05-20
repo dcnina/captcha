@@ -84,7 +84,7 @@ public class MainUi {
 	}
 
 	private static JButton createOkButton(final JFrame frame){
-		return new JButton(new AbstractAction("Vérifier") { //ajouter l'action du bouton
+		return new JButton(new AbstractAction("VÃ©rifier") { //ajouter l'action du bouton
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -94,11 +94,11 @@ public class MainUi {
 					public void run() { // c'est un runnable
 						if (checkPhotosIsCorrect(init.getCorrectImages(), init.getCorrectCategory())) {
 							System.out.println("C'est OK");
-							displaySuccessMessage("Félicitations vous avez réussi !", frame);
+							displaySuccessMessage("FÃ©licitations vous avez rÃ©ussi !", frame);
 						}
 						else {
-							
 								try {
+									displayErrorMessage("Vous avez fait erreur !");
 									restartCaptcha(frame);
 								} catch (InstantiationException | IllegalAccessException | ClassNotFoundException
 										| IOException e) {
@@ -106,7 +106,6 @@ public class MainUi {
 								}
 							
 							System.out.println("PAS OK");
-							displayErrorMessage("Vous avez fait erreur !");
 						}
 					}
 				});
