@@ -14,36 +14,4 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>src/fr/upem/captcha/images/panneaux/ronds/panneaux-autoroute.jpeg</name>
-			<type>1</type>
-			<locationURI>PROJECT_LOC/src/fr/upem/captcha/images/panneaux/panneaux-autoroute.jpeg</locationURI>
-		</link>
-		<link>
-			<name>src/fr/upem/captcha/images/panneaux/ronds/panneaux-bleu-carre.jpeg</name>
-			<type>1</type>
-			<locationURI>PROJECT_LOC/src/fr/upem/captcha/images/panneaux/panneaux-bleu-carre.jpeg</locationURI>
-		</link>
-		<link>
-			<name>src/fr/upem/captcha/images/panneaux/ronds/panneaux-metro.jpg</name>
-			<type>1</type>
-			<locationURI>PROJECT_LOC/src/fr/upem/captcha/images/panneaux/panneaux-metro.jpg</locationURI>
-		</link>
-		<link>
-			<name>src/fr/upem/captcha/images/panneaux/ronds/panneaux-ny.jpg</name>
-			<type>1</type>
-			<locationURI>PROJECT_LOC/src/fr/upem/captcha/images/panneaux/panneaux-ny.jpg</locationURI>
-		</link>
-		<link>
-			<name>src/fr/upem/captcha/images/panneaux/ronds/panneaux-parking.jpg</name>
-			<type>1</type>
-			<locationURI>PROJECT_LOC/src/fr/upem/captcha/images/panneaux/panneaux-parking.jpg</locationURI>
-		</link>
-		<link>
-			<name>src/fr/upem/captcha/images/panneaux/ronds/panneaux-route.jpg</name>
-			<type>1</type>
-			<locationURI>PROJECT_LOC/src/fr/upem/captcha/images/panneaux/panneaux-route.jpg</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>

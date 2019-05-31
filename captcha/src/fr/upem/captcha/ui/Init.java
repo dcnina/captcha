@@ -12,11 +12,6 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 import fr.upem.captcha.images.Images;
-import fr.upem.captcha.images.bancs.Bancs;
-import fr.upem.captcha.images.panneaux.Panneaux;
-import fr.upem.captcha.images.panneaux.ronds.PanneauRonds;
-import fr.upem.captcha.images.ponts.Ponts;
-import fr.upem.captcha.images.villes.Villes;
 
 public class Init {
 	private Images correctCategory;
@@ -24,7 +19,6 @@ public class Init {
 	private ArrayList<URL> correctImages = new ArrayList<URL>();
 	private ArrayList<URL> allImages = new ArrayList<URL>();
 	private ArrayList<String> categorieNames = new ArrayList<String>();
-	private int maxDifficulty = 1;
 	
 	public Init()  {
 		//intialisation avec catégorie images
@@ -50,8 +44,7 @@ public class Init {
 	
 	public String getCorrectStringCategory() {
 		return stringCategory;
-	}
-	
+	}	
 	
 	public void initGrid()  {
 
@@ -61,7 +54,6 @@ public class Init {
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
 			e.printStackTrace();
 		}
-		System.out.println("categories init ligne 64 "+categories);
 		
 		//INIT ARRAY CATEGORIES
 		try {
@@ -166,6 +158,7 @@ public class Init {
 			        .filter(n -> !n.contains("."))
 			        .collect(Collectors.toList());
 			directories.remove(0);	// On enléve le 0 car c'est le nom du dossier courant
+			
 		} catch (IOException e) {
 
 			e.printStackTrace();

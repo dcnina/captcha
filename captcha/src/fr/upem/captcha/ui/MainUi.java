@@ -1,22 +1,26 @@
+/**
+ * @authors : Audrey COMBE - Nina DE CASTRO
+ * @date : 31 mai 2019
+ * @file : MainUi.java
+ * @package : fr.upem.captcha.ui
+ */
+
+
 package fr.upem.captcha.ui;
 
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Random;
+
 
 import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
@@ -25,20 +29,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextArea;
 import javax.swing.JOptionPane;
 
-import fr.upem.captcha.images.Category;
 import fr.upem.captcha.images.Images;
-import fr.upem.captcha.images.panneaux.Panneaux;
-import fr.upem.captcha.images.panneaux.ronds.PanneauRonds;
-import fr.upem.captcha.images.ponts.Ponts;
-import fr.upem.captcha.images.bancs.Bancs;
-import fr.upem.captcha.images.villes.Villes;
+
 
 public class MainUi {
 	private static ArrayList<URL> selectedImages = new ArrayList<URL>();
-	private static ArrayList<URL> correctedImages = new ArrayList<URL>();
+	//private static ArrayList<URL> correctedImages = new ArrayList<URL>();
 	private static Init init = new Init();
 
 	public static void main(String[] args) throws IOException, URISyntaxException, InstantiationException, IllegalAccessException, ClassNotFoundException {
@@ -73,17 +71,22 @@ public class MainUi {
 	}
 
 	private static JButton createOkButton(final JFrame frame){
-		return new JButton(new AbstractAction("VÃ©rifier") { //ajouter l'action du bouton
+		return new JButton(new AbstractAction("Vérifier") { //ajouter l'action du bouton
+
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				EventQueue.invokeLater(new Runnable() { // faire des choses dans l'interface donc appeler cela dans la queue des Ã©vÃ¨nements
+				EventQueue.invokeLater(new Runnable() { // faire des choses dans l'interface donc appeler cela dans la queue des événements
 
 					@Override
 					public void run() { // c'est un runnable
 						if (checkPhotosIsCorrect(init.getCorrectImages(), init.getCorrectCategory())) {
 							System.out.println("C'est OK");
-							displaySuccessMessage("FÃ©licitations vous avez rÃ©ussi !", frame);
+							displaySuccessMessage("Félicitations vous avez réussi !", frame);
 						}
 						else {
 								try {

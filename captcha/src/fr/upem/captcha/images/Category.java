@@ -1,8 +1,13 @@
+/**
+ * @authors : Audrey COMBE - Nina DE CASTRO
+ * @date : 31 mai 2019
+ * @file : Cateogry.java
+ * @package : fr.upem.captcha.ui
+ */
+
 package fr.upem.captcha.images;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -61,7 +66,7 @@ public abstract class Category implements Images{
 			}
 			
 			for(String image : imagesFromCategory) {
-				images.add(this.getClass().getResource(directorieItem+"/"+images));
+				images.add(this.getClass().getResource(directorieItem+"/"+image));
 
 			}
 		}
