@@ -1,4 +1,5 @@
-package fr.upem.captcha.images.villes;
+package fr.upem.captcha.images.panneaux;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -13,9 +14,9 @@ import fr.upem.captcha.images.Category;
 import fr.upem.captcha.images.Images;
 import fr.upem.captcha.images.panneaux.ronds.PanneauRonds;
 
-public class Villes extends Category {	
-	public Villes() {
+public class Panneaux extends Category {
+	
+	public Panneaux() {
 		super();
 	}
-	
 }

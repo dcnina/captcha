@@ -30,16 +30,13 @@ import javax.swing.JOptionPane;
 
 import fr.upem.captcha.images.Category;
 import fr.upem.captcha.images.Images;
-import fr.upem.captcha.images.panneaux.Panneau;
+import fr.upem.captcha.images.panneaux.Panneaux;
 import fr.upem.captcha.images.panneaux.ronds.PanneauRonds;
 import fr.upem.captcha.images.ponts.Ponts;
+import fr.upem.captcha.images.bancs.Bancs;
 import fr.upem.captcha.images.villes.Villes;
 
 public class MainUi {
-//	final static int VILLES = 0;
-//	final static int PONTS = 1;
-//	final static int PANNEAUX = 2;
-//	final static int PANNEAUXRONDS = 3;
 	private static ArrayList<URL> selectedImages = new ArrayList<URL>();
 	private static ArrayList<URL> correctedImages = new ArrayList<URL>();
 	private static Init init = new Init();
@@ -60,27 +57,15 @@ public class MainUi {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Lorsque l'on ferme la fenêtre on quitte le programme.
 
 
-		JButton okButton = createOkButton(frame);
-
-		// Ajout des images dans la frame
-		init.initGrid();
-//		
-//		System.out.println("Catégories: " + init.getCategorieNames().toString());
-//		System.out.println("Bonne CAT: " + init.getCorrectCategory().toString());
-//		System.out.println("Tableaux d'images: " + init.getCorrectImages().toString());
-//		System.out.println();
-//		
-//		for(int j = 0; j < 9; j++)
-//			frame.add(createLabelImage(init.getAllImages().get(j)));
-//		
-//
-//		frame.add(new JLabel("Trouvez: \n" + init.getCorrectStringCategory()));
-//		frame.add(okButton);
-//		frame.setVisible(true);
+		JButton okButton = createOkButton(frame);	
 		
-		Category categTest = new Panneau();
-		//categTest
-		System.out.println(categTest.getImages());
+		for(int j = 0; j < 9; j++)
+			frame.add(createLabelImage(init.getAllImages().get(j)));
+		
+		frame.add(new JLabel("Trouvez: \n" + init.getCorrectStringCategory()));
+		frame.add(okButton);
+		frame.setVisible(true);
+
 	}
 
 	private static GridLayout createLayout(){
@@ -176,6 +161,9 @@ public class MainUi {
 	}
 	
 	private static boolean checkPhotosIsCorrect(ArrayList<URL> correctImages, Images category) {
+		if(selectedImages.isEmpty()) {
+			return false;
+		}
 		if (selectedImages.containsAll(correctImages)) {
 			for (URL url: selectedImages) {
 				if (!category.isPhotoCorrect(url))

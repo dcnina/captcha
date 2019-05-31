@@ -28,7 +28,6 @@ public abstract class Category implements Images{
 		
 		String packageName = "bin/"+this.getClass().getPackage().getName();
 		String currentPath = packageName.replace('.', '/');
-		System.out.println(currentPath);
 		
 		Path currentRelativePath = Paths.get(currentPath);
 		
@@ -62,7 +61,8 @@ public abstract class Category implements Images{
 			}
 			
 			for(String image : imagesFromCategory) {
-				images.add(this.getClass().getResource(directorieItem+"/"+image));
+				images.add(this.getClass().getResource(directorieItem+"/"+images));
+
 			}
 		}
 		
@@ -92,7 +92,6 @@ public abstract class Category implements Images{
 			getPhotos();
 		}
 		
-		//List<URL> allUrlImages = this.images;
 		List<URL> randomUrlList = new ArrayList<URL>();
 		URL url;
 		
@@ -125,5 +124,8 @@ public abstract class Category implements Images{
 	}
 
 	
-	public abstract boolean isPhotoCorrect(URL url);
+	public boolean isPhotoCorrect(URL url) {
+		String packageName = this.getClass().getPackage().getName();
+		return url.toString().replace('/', '.').contains(packageName);
+	}
 }
