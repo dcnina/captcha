@@ -15,32 +15,32 @@ import fr.upem.captcha.images.Images;
 import fr.upem.captcha.images.panneaux.ronds.PanneauRonds;
 
 public class Panneau extends Category {
-	private final File directory = new File("./src/fr/upem/captcha/images/panneaux");
+	private final File directory = new File("src/fr/upem/captcha/images/panneaux");
 	
 	public Panneau() {
 		super();
 	}
 
-	@Override
-	public List<URL> getPhotos() {
-		List<URL> urlList = new ArrayList<URL>();
-		File[] f = directory.listFiles();
-	    for (File file : f) {
-	        if (file != null && (file.getName().toLowerCase().endsWith(".jpg") || file.getName().toLowerCase().endsWith(".jpeg"))) {
-				try {
-					URL url = file.toURL();
-					urlList.add(url);
-				} 
-				catch (MalformedURLException e) {
-				    
-				}	
-	        }
-	    }
-	    if (urlList.size() > 0)
-            return urlList;
-        else
-            return null;
-	}
+//	@Override
+//	public List<URL> getPhotos() {
+//		List<URL> urlList = new ArrayList<URL>();
+//		File[] f = directory.listFiles();
+//	    for (File file : f) {
+//	        if (file != null && (file.getName().toLowerCase().endsWith(".jpg") || file.getName().toLowerCase().endsWith(".jpeg"))) {
+//				try {
+//					URL url = file.toURL();
+//					urlList.add(url);
+//				} 
+//				catch (MalformedURLException e) {
+//				    
+//				}	
+//	        }
+//	    }
+//	    if (urlList.size() > 0)
+//            return urlList;
+//        else
+//            return null;
+//	}
 
 	@Override
 	public List<URL> getRandomPhotosURL(int max) {

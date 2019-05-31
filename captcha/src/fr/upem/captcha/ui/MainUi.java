@@ -36,10 +36,10 @@ import fr.upem.captcha.images.ponts.Ponts;
 import fr.upem.captcha.images.villes.Villes;
 
 public class MainUi {
-	final static int VILLES = 0;
-	final static int PONTS = 1;
-	final static int PANNEAUX = 2;
-	final static int PANNEAUXRONDS = 3;
+//	final static int VILLES = 0;
+//	final static int PONTS = 1;
+//	final static int PANNEAUX = 2;
+//	final static int PANNEAUXRONDS = 3;
 	private static ArrayList<URL> selectedImages = new ArrayList<URL>();
 	private static ArrayList<URL> correctedImages = new ArrayList<URL>();
 	private static Init init = new Init();
@@ -64,19 +64,23 @@ public class MainUi {
 
 		// Ajout des images dans la frame
 		init.initGrid();
+//		
+//		System.out.println("Catégories: " + init.getCategorieNames().toString());
+//		System.out.println("Bonne CAT: " + init.getCorrectCategory().toString());
+//		System.out.println("Tableaux d'images: " + init.getCorrectImages().toString());
+//		System.out.println();
+//		
+//		for(int j = 0; j < 9; j++)
+//			frame.add(createLabelImage(init.getAllImages().get(j)));
+//		
+//
+//		frame.add(new JLabel("Trouvez: \n" + init.getCorrectStringCategory()));
+//		frame.add(okButton);
+//		frame.setVisible(true);
 		
-		System.out.println("Catégories: " + init.getCategorieNames().toString());
-		System.out.println("Bonne CAT: " + init.getCorrectCategory().toString());
-		System.out.println("Tableaux d'images: " + init.getCorrectImages().toString());
-		System.out.println();
-		
-		for(int j = 0; j < 9; j++)
-			frame.add(createLabelImage(init.getAllImages().get(j)));
-		
-
-		frame.add(new JLabel("Trouvez: \n" + init.getCorrectStringCategory()));
-		frame.add(okButton);
-		frame.setVisible(true);
+		Category categTest = new Panneau();
+		//categTest
+		System.out.println(categTest.getImages());
 	}
 
 	private static GridLayout createLayout(){
